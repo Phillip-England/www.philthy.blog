@@ -1,0 +1,169 @@
+<!doctype html><html lang=en><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><script src=https://unpkg.com/hyperscript.org@0.9.13 async></script><link rel=stylesheet href=https://phillip-england.github.io/www.philthy.blog/static/css/output.css><link rel=icon href=https://phillip-england.github.io/www.philthy.blog/favicon.ico type=image/x-icon><body class="h-screen flex flex-col dark:bg-black bg-white custom-scroll text-black dark:text-white"><custom-scroll></custom-scroll><script>
+        document.documentElement.classList.toggle('dark', localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches))
+        window.addEventListener("DOMContentLoaded", () => {
+            let sun = document.getElementById("sun");
+            let moon = document.getElementById("moon");
+            sun.addEventListener("click", () => {
+                localStorage.theme = "light";
+                document.documentElement.classList.toggle("dark");
+            });
+            moon.addEventListener("click", () => {
+                localStorage.theme = "dark";
+                document.documentElement.classList.toggle("dark");
+            });
+        });
+    </script><title>Philthy Blog: Screenplay</title><header class="p-4 border-b flex justify-between border-gray-200 dark:border-gray-800 fixed top-0 dark:bg-black bg-white z-30 w-full h-[65px]"><div _="on click go back" class=cursor-pointer><svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"></path>
+            </svg></div><div><div class="flex flex-row gap-4"><svg id="expand" class="w-8 h-8 cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4H4m0 0v4m0-4 5 5m7-5h4m0 0v4m0-4-5 5M8 20H4m0 0v-4m0 4 5-5m7 5h4m0 0v-4m0 4-5-5"></path>
+				</svg>
+<svg id="compress" class="w-8 h-8 hidden cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h4V4m12 4h-4V4M4 16h4v4m12-4h-4v4"></path>
+				</svg>
+<svg id="moon" class="w-8 h-8 cursor-pointer flex dark:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M11.675 2.015a.998.998 0 0 0-.403.011C6.09 2.4 2 6.722 2 12c0 5.523 4.477 10 10 10 4.356 0 8.058-2.784 9.43-6.667a1 1 0 0 0-1.02-1.33c-.08.006-.105.005-.127.005h-.001l-.028-.002A5.227 5.227 0 0 0 20 14a8 8 0 0 1-8-8c0-.952.121-1.752.404-2.558a.996.996 0 0 0 .096-.428V3a1 1 0 0 0-.825-.985Z" clip-rule="evenodd"></path>
+                </svg>
+<svg id="sun" class="w-8 h-8 hidden cursor-pointer dark:flex" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M13 3a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0V3ZM6.343 4.929A1 1 0 0 0 4.93 6.343l1.414 1.414a1 1 0 0 0 1.414-1.414L6.343 4.929Zm12.728 1.414a1 1 0 0 0-1.414-1.414l-1.414 1.414a1 1 0 0 0 1.414 1.414l1.414-1.414ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-9 4a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2H3Zm16 0a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2h-2ZM7.757 17.657a1 1 0 1 0-1.414-1.414l-1.414 1.414a1 1 0 1 0 1.414 1.414l1.414-1.414Zm9.9-1.414a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414ZM13 19a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Z" clip-rule="evenodd"></path>
+                </svg></div></div></header><div class=h-[65px]></div><div id=logo class="top-[125px] left-[70px] w-[200px] fixed"><img class=dark:hidden src=https://phillip-england.github.io/www.philthy.blog/static/img/logo-black.svg>
+<img class="dark:flex hidden" src=https://phillip-england.github.io/www.philthy.blog/static/img/logo-white.svg></div><main class="p-12 flex flex-row items-center justify-center w-full"><div id=playback class="block flex-1 ml-[25%] mr-[25%]"></div></main><script>
+
+		let expand = document.querySelector('#expand');
+		let compress = document.querySelector('#compress');
+
+		expand.addEventListener('click', () => {
+			
+			expand.classList.remove('flex');
+			expand.classList.add('hidden');
+			compress.classList.remove('hidden');
+			compress.classList.add('flex');
+
+			
+			if (document.documentElement.requestFullscreen) {
+				document.documentElement.requestFullscreen();
+			} else if (document.documentElement.webkitRequestFullscreen) { 
+				document.documentElement.webkitRequestFullscreen();
+			} else if (document.documentElement.msRequestFullscreen) { 
+				document.documentElement.msRequestFullscreen();
+			} else {
+				console.warn('Fullscreen mode is not supported by this browser.');
+			}
+		});
+
+		compress.addEventListener('click', () => {
+			
+			compress.classList.add('hidden');
+			compress.classList.remove('flex');
+			expand.classList.remove('hidden');
+			expand.classList.add('flex');
+
+			
+			if (document.exitFullscreen) {
+				document.exitFullscreen();
+			} else if (document.webkitExitFullscreen) { 
+				document.webkitExitFullscreen();
+			} else if (document.msExitFullscreen) { 
+				document.msExitFullscreen();
+			} else {
+				console.warn('Exiting full-screen mode is not supported by this browser.');
+			}
+		});
+
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+
+    const playback = document.querySelector('#playback');
+    let finalTranscript = '';
+    let retryCount = 0;
+    const MAX_RETRIES = 3;
+    let isShuttingDown = false;
+
+    recognition.onresult = (event) => {
+        let interimTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+            const result = event.results[i];
+            if (result.isFinal) {
+                finalTranscript += result[0].transcript.trim() + ' ';
+            } else {
+                interimTranscript += result[0].transcript;
+            }
+        }
+
+        const fullTranscript = finalTranscript + interimTranscript;
+        const words = fullTranscript.trim().split(' ');
+        const lastWord = words.pop();
+        playback.innerHTML = `${words.join(' ')} <span class="text-red-500">${lastWord}</span>`;
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    };
+
+    recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        if (!isShuttingDown) {
+            handleError();
+        }
+    };
+
+    let recognitionTimer;
+    const MAX_SESSION_TIME = 240000; 
+
+    recognition.onstart = () => {
+        console.log('Speech recognition started.');
+        recognitionTimer = setTimeout(() => {
+            console.log('Restarting speech recognition session...');
+            recognition.stop();
+        }, MAX_SESSION_TIME);
+    };
+
+    recognition.onend = () => {
+        clearTimeout(recognitionTimer);
+        if (!isShuttingDown) {
+            recognition.start();
+        }
+    };
+
+    const handleError = () => {
+        retryCount++;
+        console.log(`Retry attempt ${retryCount} of ${MAX_RETRIES}`);
+        
+        if (retryCount >= MAX_RETRIES) {
+            console.log('Max retries reached. Shutting down speech recognition.');
+            isShuttingDown = true;
+            recognition.stop();
+            playback.innerHTML += '<p class="text-red-500">Speech recognition has been disabled due to repeated errors. Please refresh the page to try again.</p>';
+            return;
+        }
+
+        
+        setTimeout(() => {
+            try {
+                recognition.start();
+            } catch (e) {
+                console.error('Failed to restart speech recognition:', e);
+                handleError();
+            }
+        }, 1000 * retryCount); 
+    };
+
+    
+    try {
+        recognition.start();
+        console.log('Speech recognition started. Speak into the microphone.');
+    } catch (e) {
+        console.error('Failed to start speech recognition:', e);
+        handleError();
+    }
+} else {
+    console.warn('Speech recognition not supported in this browser.');
+    playback.innerHTML = '<p class="text-red-500">Speech recognition is not supported in this browser.</p>';
+}
+		
+    </script><script src=https://phillip-england.github.io/www.philthy.blog/static/js/index.js></script>
