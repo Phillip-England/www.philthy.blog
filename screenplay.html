@@ -26,7 +26,7 @@
 <svg id="sun" class="w-8 h-8 hidden cursor-pointer dark:flex" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd" d="M13 3a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0V3ZM6.343 4.929A1 1 0 0 0 4.93 6.343l1.414 1.414a1 1 0 0 0 1.414-1.414L6.343 4.929Zm12.728 1.414a1 1 0 0 0-1.414-1.414l-1.414 1.414a1 1 0 0 0 1.414 1.414l1.414-1.414ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-9 4a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2H3Zm16 0a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2h-2ZM7.757 17.657a1 1 0 1 0-1.414-1.414l-1.414 1.414a1 1 0 1 0 1.414 1.414l1.414-1.414Zm9.9-1.414a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414ZM13 19a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Z" clip-rule="evenodd"></path>
                 </svg></div></div></header><div class=h-[65px]></div><div id=logo class="top-[125px] left-[70px] w-[200px] fixed"><img class=dark:hidden src=https://phillip-england.github.io/www.philthy.blog/static/img/logo-black.svg>
-<img class="dark:flex hidden" src=https://phillip-england.github.io/www.philthy.blog/static/img/logo-white.svg></div><main class="p-12 flex flex-row items-center justify-center w-full"><div id=playback class="block flex-1 ml-[25%] mr-[25%]"></div></main><script>
+<img class="dark:flex hidden" src=https://phillip-england.github.io/www.philthy.blog/static/img/logo-white.svg></div><main class="p-12 flex flex-row items-center justify-center w-full text-2xl"><div id=playback class="block flex-1 ml-[25%] mr-[25%]"></div></main><script>
 
 		let expand = document.querySelector('#expand');
 		let compress = document.querySelector('#compress');
@@ -84,26 +84,28 @@ if (SpeechRecognition) {
     const MAX_RETRIES = 3;
     let isShuttingDown = false;
 
-    recognition.onresult = (event) => {
-        let interimTranscript = '';
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-            const result = event.results[i];
-            if (result.isFinal) {
-                finalTranscript += result[0].transcript.trim() + ' ';
-            } else {
-                interimTranscript += result[0].transcript;
-            }
-        }
+	recognition.onresult = (event) => {
+		let interimTranscript = '';
+		for (let i = event.resultIndex; i < event.results.length; i++) {
+			const result = event.results[i];
+			if (result.isFinal) {
+				finalTranscript += result[0].transcript.trim() + ' ';
+			} else {
+				interimTranscript += result[0].transcript;
+			}
+		}
 
-        const fullTranscript = finalTranscript + interimTranscript;
-        const words = fullTranscript.trim().split(' ');
-        const lastWord = words.pop();
-        playback.innerHTML = `${words.join(' ')} <span class="text-red-500">${lastWord}</span>`;
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
-        });
-    };
+		
+		const fullTranscript = (finalTranscript + interimTranscript).replace(/\bfilthy\b/gi, 'philthy').replace(/\bphilip\b/gi, 'phillip');
+
+		const words = fullTranscript.trim().split(' ');
+		const lastWord = words.pop();
+		playback.innerHTML = `${words.join(' ')} <span class="text-red-500">${lastWord}</span>`;
+		window.scrollTo({
+			top: document.body.scrollHeight,
+			behavior: 'smooth'
+		});
+	};
 
     recognition.onerror = (event) => {
         console.error('Speech recognition error:', event.error);
